@@ -71,6 +71,7 @@ h6 {
   --L-Secondary: #abceec;
   --L-Accent: #c11a1a;
   --L-Gray: #7a7a7a;
+  --L-Faded-Blue: rgba(32, 112, 188, 0.05);
 }
 
 /* Adding General sizes */
@@ -78,6 +79,8 @@ h6 {
 :root {
   --H1-Article: 2.75rem;
   --P-Article: 1.125rem;
+  --Space: 16px;
+  --Border-Radius: 15px;
 }
 
 body {
@@ -92,16 +95,6 @@ body {
 a {
   text-decoration: none;
   color: var(--L-Text);
-}
-
-.link_hover:hover {
-  transition: all 0.2s ease;
-  text-decoration: underline;
-  color: var(--L-Primary);
-}
-
-.body_img img {
-  border-radius: 15px;
 }
 
 /* --------------------Header------------------------ */
@@ -127,7 +120,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 28px;
   list-style: disc;
 }
 
@@ -139,11 +132,17 @@ a {
   color: var(--L-Primary);
 }
 
+.nav_links a {
+  transition: all 0.2s ease;
+}
+
 .nav_links a:hover {
   text-decoration: underline;
   text-decoration-thickness: 3px;
-  text-underline-offset: 2rem;
+  text-underline-offset: calc(var(--Space) * 2);
+  font-size: 1rem;
   color: var(--L-Primary);
+  margin: 0 0.3rem;
 }
 
 /* ------------------Article--------------------- */
@@ -151,6 +150,7 @@ a {
 .content {
   width: 100%;
   min-height: 80vh;
+  margin: 2rem 0;
 }
 
 .article {
@@ -162,20 +162,30 @@ a {
 }
 
 .inline_link {
-  border-bottom: 2px solid var(--L-Primary);
+  border-bottom: 1px solid var(--L-Primary);
   transition: all 0.2s ease;
 }
 
 .inline_link:hover {
-  background-color: var(--L-Secondary);
+  color: var(--L-Primary);
   border-bottom: none;
+}
+
+.link_hover {
+  transition: all 0.2s ease;
+}
+
+.link_hover:hover {
+  border-bottom: 1px solid var(--L-Primary);
+  color: var(--L-Primary);
 }
 
 /* --------------Article Heading Content-------------- */
 
 .article_heading {
   display: grid;
-  gap: 10px;
+  gap: var(--Space);
+  margin-bottom: var(--Space);
 }
 
 .breadcrumb {
@@ -197,10 +207,9 @@ a {
 
 .heading_meta {
   display: flex;
-  gap: 1rem;
+  gap: var(--Space);
   text-transform: uppercase;
   font-size: 0.8rem;
-  /* border-bottom: 1px solid var(--L-Gray); */
 }
 
 .meta_author a {
@@ -218,7 +227,11 @@ a {
 
 .body_img {
   position: relative;
-  margin: 10px 0;
+  margin: var(--Space) 0;
+}
+
+.body_img img {
+  border-radius: var(--Border-Radius);
 }
 
 .img_caption {
@@ -233,8 +246,23 @@ a {
   text-shadow: 0 0 3px var(--L-Text);
 }
 
+.watermark {
+  position: absolute;
+  z-index: 30;
+  bottom: 0.5rem;
+  right: 1rem;
+  opacity: 0.5;
+}
+
+/* ------------Key Points / Indholdsfortegnelse------- */
+
 .key_points {
-  margin-bottom: 2rem;
+  width: 100%;
+  height: auto;
+  padding: 42px;
+  margin: calc(var(--Space) * 2) 0;
+  background-color: var(--L-Faded-Blue);
+  border-radius: var(--Border-Radius);
 }
 
 .key_points h3 {
@@ -261,14 +289,24 @@ a {
 
 .key_points ul li {
   margin: 0 0 0.75rem 0.75rem;
+}
+
+.custom_link {
   font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.custom_link:hover {
+  border-bottom: 1px solid var(--L-Primary);
+  color: var(--L-Primary);
+  margin-left: 0.5rem;
 }
 
 /* ---------------Accordion styling------------------ */
 
 .accordion_content {
   border: 2px solid var(--L-Secondary);
-  border-radius: 15px;
+  border-radius: var(--Border-Radius);
   margin: 1rem 0;
 }
 
@@ -276,6 +314,7 @@ a {
   cursor: pointer;
   padding: 20px;
   width: 100%;
+  background-color: var(--L-Background);
   border: none;
   border-radius: 13px;
   font-size: 1.2rem;
@@ -358,5 +397,77 @@ a {
 }
 
 /* ---------------Article Footer Content-------------- */
+
+/* TODO: Make buttons */
+
+/* -----------------Main Footer Content---------------- */
+
+.main_footer {
+  background-color: var(--L-Primary);
+}
+
+.main_footer-content {
+  background-color: var(--L-Primary);
+  padding: 64px 0;
+}
+
+.footer_nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--L-Secondary);
+  padding: 28px 0;
+}
+
+.footer_nav .logo {
+  position: absolute;
+  z-index: 30;
+  top: 10px;
+}
+
+.footer_nav nav {
+  width: 100%;
+}
+
+.footer_nav .nav_links a {
+  color: var(--L-Background);
+  letter-spacing: 0.1rem;
+}
+
+.footer_nav .nav_links a:hover {
+  color: var(--L-Background);
+}
+
+.footer_nav .nav_links li:first-of-type::marker {
+  color: var(--L-Primary);
+}
+
+.footer_nav .nav_links li::marker {
+  color: var(--L-Secondary);
+}
+
+.footer_legal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.footer_legal ul {
+  display: flex;
+  gap: var(--Space);
+}
+
+.footer_legal span,
+.footer_legal a {
+  color: var(--L-Secondary);
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+}
+
+.footer_legal .link_hover:hover {
+  border-bottom: 1px solid var(--L-Background);
+  color: var(--L-Background);
+}
 
 /* ----------------------Media Queries---------------- */
