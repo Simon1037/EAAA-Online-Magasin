@@ -107,7 +107,7 @@ a {
 /* --------------------Header------------------------ */
 
 .wrapper {
-  padding: 0 80px;
+  padding: 0 165px;
 }
 
 .main_navigation {
@@ -358,3 +358,5 @@ a {
 }
 
 /* ---------------Article Footer Content-------------- */
+
+/* ----------------------Media Queries---------------- */
