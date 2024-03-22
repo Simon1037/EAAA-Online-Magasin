@@ -21,6 +21,31 @@ window.onload = function () {
       }
     });
   }
+
+  var closeButtons = document.getElementsByClassName("close_accordion");
+  for (var i = 0; i < closeButtons.length; i++) {
+    closeButtons[i].addEventListener("click", function () {
+      var panel = this.closest(".panel");
+      if (panel) {
+        panel.style.maxHeight = null;
+        var accordionButton = panel.previousElementSibling;
+        if (accordionButton && accordionButton.classList.contains("active")) {
+          accordionButton.classList.remove("active");
+        }
+
+        // Calculate position for smooth scroll to the middle
+        var accordionTop =
+          accordionButton.getBoundingClientRect().top + window.scrollY;
+        var offset = window.innerHeight / 3.3; // Middle of the viewport
+        var scrollToPosition = accordionTop - offset;
+
+        window.scrollTo({
+          top: scrollToPosition,
+          behavior: "smooth",
+        });
+      }
+    });
+  }
 };
 
 /* Adding the ability for the class .enlarge_img to enlarge the image when clicked */

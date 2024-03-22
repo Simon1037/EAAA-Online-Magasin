@@ -83,7 +83,7 @@ h6 {
   --H3-Article: 2.75rem;
   --P-Article: 1.125rem;
   --Gap-elements: 1rem;
-  --Border-Radius: 15px;
+  --Border-Radius: 5px;
 }
 
 body {
@@ -158,8 +158,9 @@ h1 {
 
 /* --------------------Header------------------------ */
 
+/* Used for the media query that will help resizeing the header and footer */
 .wrapper {
-  padding: 0 165px;
+  padding: 0 164px;
 }
 
 .main_navigation {
@@ -215,6 +216,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  padding-bottom: 3rem;
 }
 
 .content_block > section > h2 {
@@ -327,7 +329,7 @@ h1 {
   width: 100%;
   height: auto;
   padding: 3rem;
-  margin: calc(var(--Gap-elements) * 2) 0;
+  margin: var(--Gap-elements) 0;
   background-color: var(--L-Faded-Blue);
   border-radius: var(--Border-Radius);
 }
@@ -381,7 +383,7 @@ h1 {
   width: 100%;
   background: var(--L-Background);
   border: none;
-  border-radius: 13px;
+  border-radius: var(--Border-Radius);
   text-align: left;
   outline: none;
   transition: 0.2s;
@@ -419,52 +421,114 @@ h1 {
 
 /* Step Guide */
 
-.step_guide-content {
+.step_guide-content,
+.step_guide-content-1 {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   position: relative;
   overflow: visible;
 }
 
-.step_guide-content:nth-of-type(even) {
-  grid-template-columns: 1.1fr 1fr;
+.step_guide-content-1 {
+  grid-template-columns: 1fr;
 }
 
 .step_guide-content:nth-of-type(even) .step_guide-txt {
   order: 1;
 }
 
-.step_guide-content .step_guide-txt {
+.step_guide-txt {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
   gap: 12px;
+  padding: 1.2rem;
 }
 
 .step_guide-txt span {
   color: var(--L-Primary);
-  border-bottom: 2px solid var(--L-Primary);
 }
 
 .step_guide-content .img_caption {
   font-size: 0.6rem;
 }
 
-.img_box-shadow {
-  filter: drop-shadow(rgba(0, 0, 0, 0.1) 0px 4px 12px);
-}
-
 /* ---------------Article Footer Content-------------- */
 
-/* TODO: Make buttons */
+/* ---------------Bottom Footer Content-------------- */
+
+.bottom_section {
+  margin: 100px 0 64px 0;
+}
+
+.bottom_ctn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom_ctn .title {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.btn_ctn {
+  margin-top: auto;
+}
+
+.btn {
+  background: none;
+  border: 2px solid var(--L-Secondary);
+  border-radius: var(--Border-Radius);
+  padding: 12px 24px;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--L-Secondary);
+}
+
+/* Cards */
+
+.cards_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin: var(--Gap-elements) 0;
+}
+
+.card,
+.card_content,
+.card_title {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card_title {
+  gap: 12px;
+}
+.card img {
+  max-height: 300px;
+}
+
+.card_info {
+  display: flex;
+  gap: var(--Gap-elements);
+  padding-left: 1rem;
+}
+
+.card_btn {
+  height: auto;
+}
 
 /* -----------------Main Footer Content---------------- */
-
-.main_footer {
-  background-color: var(--L-Primary);
-}
 
 .main_footer-content {
   background-color: var(--L-Primary);
@@ -528,4 +592,4 @@ h1 {
   color: var(--L-Background);
 }
 
-/* ----------------------Media Queries---------------- */
+/* ----------------------Media Query---------------- */
