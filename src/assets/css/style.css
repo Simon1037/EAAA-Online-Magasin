@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Figtree", sans-serif;
 }
 
 *,
@@ -49,7 +50,7 @@ select {
   font: inherit;
 }
 
-/* Avoid text overflows */
+/* Avoid text overflows and setting the color */
 p,
 h1,
 h2,
@@ -58,9 +59,10 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+  color: var(--L-Text);
 }
 
-/* -------------------Defaults----------------------- */
+/* -------------------General / Defaults----------------------- */
 
 /* Adding Root colors for easy of use */
 
@@ -69,7 +71,6 @@ h6 {
   --L-Background: #f2f2f2;
   --L-Primary: #2070bc;
   --L-Secondary: #abceec;
-  --L-Accent: #c11a1a;
   --L-Gray: #7a7a7a;
   --L-Faded-Blue: rgba(32, 112, 188, 0.05);
 }
@@ -77,17 +78,16 @@ h6 {
 /* Adding General sizes */
 
 :root {
-  --H1-Article: 2.75rem;
+  --H1-Article: 3rem;
+  --H2-Article: 2.25rem;
+  --H3-Article: 2.75rem;
   --P-Article: 1.125rem;
-  --Space: 16px;
+  --Gap-elements: 1rem;
   --Border-Radius: 15px;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
   font-size: 16px;
-  line-height: 1.5;
-  color: var(--L-Text);
   background: var(--L-Background);
   overflow-x: hidden;
 }
@@ -95,6 +95,65 @@ body {
 a {
   text-decoration: none;
   color: var(--L-Text);
+}
+
+.site_logo {
+  height: 2.5rem;
+}
+
+/* Font Styles */
+
+/* xs - sm - md - lg - xl */
+
+.xs_font {
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+}
+
+.sm_font,
+.sm_font-bold,
+.sm_font-italic {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.sm_font-bold {
+  font-weight: 700;
+}
+
+.sm_font-italic {
+  font-style: italic;
+}
+
+.md_font,
+.md_font-bold,
+p {
+  font-size: 1.125rem;
+  line-height: 1.9rem;
+  font-weight: 400;
+}
+
+.md_font-bold {
+  font-weight: 700;
+}
+
+.lg_font,
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.25rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 4rem;
+  font-weight: 600;
 }
 
 /* --------------------Header------------------------ */
@@ -112,7 +171,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 21px 0;
 }
 
 /* Used multiple places */
@@ -139,8 +198,7 @@ a {
 .nav_links a:hover {
   text-decoration: underline;
   text-decoration-thickness: 3px;
-  text-underline-offset: calc(var(--Space) * 2);
-  font-size: 1rem;
+  text-underline-offset: calc(var(--Gap-elements) * 2);
   color: var(--L-Primary);
   margin: 0 0.3rem;
 }
@@ -150,15 +208,23 @@ a {
 .content {
   width: 100%;
   min-height: 80vh;
-  margin: 2rem 0;
+  margin: var(--Gap-elements) 0 calc(var(--Gap-elements) * 2) 0;
+}
+
+.content_block {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.content_block > section > h2 {
+  margin-bottom: var(--Gap-elements);
 }
 
 .article {
-  display: grid;
-  grid-template-rows: auto auto auto 1fr;
   margin: 0 auto;
   width: 100%;
-  max-width: 1140px;
+  max-width: 940px;
 }
 
 .inline_link {
@@ -184,8 +250,8 @@ a {
 
 .article_heading {
   display: grid;
-  gap: var(--Space);
-  margin-bottom: var(--Space);
+  gap: var(--Gap-elements);
+  margin-bottom: var(--Gap-elements);
 }
 
 .breadcrumb {
@@ -193,45 +259,46 @@ a {
   list-style: none;
 }
 
-.heading_title {
-  font-size: var(--H1-Article);
-  font-weight: 800;
-  line-height: 1.2;
-}
-
-.heading_exept {
-  font-size: var(--P-Article);
-  font-weight: 400;
-  line-height: 1.4;
-}
-
 .heading_meta {
   display: flex;
-  gap: var(--Space);
-  text-transform: uppercase;
-  font-size: 0.8rem;
+  gap: var(--Gap-elements);
+  color: var(--L-Gray);
 }
 
-.meta_author a {
-  font-weight: 700;
+.author a {
+  font-style: normal;
 }
 
 /* ---------------Article Body Content-------------- */
 
 .article_body {
-  display: grid;
-  grid-template-columns: 1fr 150px;
-  gap: 50px;
   border-bottom: 1px solid var(--L-Gray);
 }
 
 .body_img {
   position: relative;
-  margin: var(--Space) 0;
+  margin: var(--Gap-elements) 0;
 }
 
 .body_img img {
   border-radius: var(--Border-Radius);
+}
+
+.enlarge_img {
+  transition: all 1s ease;
+}
+
+.enlarge_img:hover {
+  filter: brightness(50%);
+  cursor: pointer;
+}
+
+.enlarge_img.clicked {
+  transform: scale(1);
+  z-index: 10;
+  width: 100%;
+  position: relative;
+  grid-column: 1 / -1;
 }
 
 .img_caption {
@@ -259,18 +326,16 @@ a {
 .key_points {
   width: 100%;
   height: auto;
-  padding: 42px;
-  margin: calc(var(--Space) * 2) 0;
+  padding: 3rem;
+  margin: calc(var(--Gap-elements) * 2) 0;
   background-color: var(--L-Faded-Blue);
   border-radius: var(--Border-Radius);
 }
 
 .key_points h3 {
-  font-size: 1rem;
-  padding-bottom: 1rem;
-  font-weight: 700;
   text-transform: uppercase;
   color: var(--L-Gray);
+  padding-bottom: 2rem;
 }
 
 .key_points-content {
@@ -292,7 +357,7 @@ a {
 }
 
 .custom_link {
-  font-weight: 700;
+  font-weight: 500;
   transition: all 0.15s ease;
 }
 
@@ -307,17 +372,16 @@ a {
 .accordion_content {
   border: 2px solid var(--L-Secondary);
   border-radius: var(--Border-Radius);
-  margin: 1rem 0;
+  margin: calc(var(--Gap-elements) * 2) 0 var(--Gap-elements) 0;
 }
 
 .accordion {
   cursor: pointer;
   padding: 20px;
   width: 100%;
-  background-color: var(--L-Background);
+  background: var(--L-Background);
   border: none;
   border-radius: 13px;
-  font-size: 1.2rem;
   text-align: left;
   outline: none;
   transition: 0.2s;
@@ -345,12 +409,12 @@ a {
 .panel {
   padding: 0 1rem;
   max-height: 0;
-  overflow: hidden;
+  overflow: scroll;
   transition: max-height 0.6s ease-out;
 }
 
 .panel section {
-  margin: 1rem 0;
+  margin: var(--Gap-elements) 0;
 }
 
 /* Step Guide */
@@ -359,6 +423,8 @@ a {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: 2rem;
+  position: relative;
+  overflow: visible;
 }
 
 .step_guide-content:nth-of-type(even) {
@@ -378,14 +444,8 @@ a {
 }
 
 .step_guide-txt span {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--L-Accent);
-  border-bottom: 2px solid var(--L-Accent);
-}
-
-.step_guide-txt p {
-  font-size: 1.2rem;
+  color: var(--L-Primary);
+  border-bottom: 2px solid var(--L-Primary);
 }
 
 .step_guide-content .img_caption {
@@ -455,14 +515,12 @@ a {
 
 .footer_legal ul {
   display: flex;
-  gap: var(--Space);
+  gap: var(--Gap-elements);
 }
 
 .footer_legal span,
 .footer_legal a {
   color: var(--L-Secondary);
-  font-size: 0.8rem;
-  letter-spacing: 0.1rem;
 }
 
 .footer_legal .link_hover:hover {
